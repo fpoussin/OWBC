@@ -48,14 +48,14 @@
  * @brief   Enables the CAN subsystem.
  */
 #if !defined(HAL_USE_CAN) || defined(__DOXYGEN__)
-#define HAL_USE_CAN                 FALSE
+#define HAL_USE_CAN                 TRUE
 #endif
 
 /**
  * @brief   Enables the DAC subsystem.
  */
 #if !defined(HAL_USE_DAC) || defined(__DOXYGEN__)
-#define HAL_USE_DAC                 FALSE
+#define HAL_USE_DAC                 TRUE
 #endif
 
 /**
@@ -111,7 +111,7 @@
  * @brief   Enables the PWM subsystem.
  */
 #if !defined(HAL_USE_PWM) || defined(__DOXYGEN__)
-#define HAL_USE_PWM                 FALSE
+#define HAL_USE_PWM                 TRUE
 #endif
 
 /**
@@ -132,7 +132,7 @@
  * @brief   Enables the SERIAL subsystem.
  */
 #if !defined(HAL_USE_SERIAL) || defined(__DOXYGEN__)
-#define HAL_USE_SERIAL              FALSE
+#define HAL_USE_SERIAL              TRUE
 #endif
 
 /**
@@ -146,7 +146,7 @@
  * @brief   Enables the SPI subsystem.
  */
 #if !defined(HAL_USE_SPI) || defined(__DOXYGEN__)
-#define HAL_USE_SPI                 FALSE
+#define HAL_USE_SPI                 TRUE
 #endif
 
 /**
@@ -167,7 +167,7 @@
  * @brief   Enables the WDG subsystem.
  */
 #if !defined(HAL_USE_WDG) || defined(__DOXYGEN__)
-#define HAL_USE_WDG                 FALSE
+#define HAL_USE_WDG                 TRUE
 #endif
 
 /*===========================================================================*/

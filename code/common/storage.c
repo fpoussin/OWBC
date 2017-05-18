@@ -5,10 +5,12 @@
 #include "tables.h"
 #endif
 
+typedef uint32_t crc_t;
+
 const SPIConfig EEPROM_SPIDCONFIG = {
   NULL,
-  PORT_SPI2_NSS,
-  PAD_SPI2_NSS,
+  PORT_SPI3_NSS,
+  PAD_SPI3_NSS,
   0, // Up to 20Mhz
   SPI_CR2_DS_2 | SPI_CR2_DS_1 | SPI_CR2_DS_0 | SPI_CR2_NSSP
 };
@@ -34,15 +36,6 @@ static SPIEepromFileConfig eeSettingsCfg = {
   &EEPROM_SPIDCONFIG,
 };
 
-static SPIEepromFileConfig eeTablesCfg = {
-  EEPROM_TABLES_START,
-  EEPROM_SIZE,
-  EEPROM_SIZE,
-  EEPROM_PAGE_SIZE,
-  MS2ST(EEPROM_WRITE_TIME_MS),
-  &EEPROM_SPID,
-  &EEPROM_SPIDCONFIG,
-};
 #endif
 
 static SPIEepromFileStream versionsFile;
@@ -60,32 +53,15 @@ settings_t settings_buf = {0};
 static uint32_t counters[EEPROM_TABLES_SIZE / EEPROM_TABLES_PAGE_SIZE];
 
 #define openSettingsFS SPIEepromFileOpen(&settingsFile, &eeSettingsCfg, EepromFindDevice(EEPROM_DEV_25XX)
-#define openTablesFS SPIEepromFileOpen(&tablesFile, &eeTablesCfg, EepromFindDevice(EEPROM_DEV_25XX))
 
 // Default settings
-settings_t settings = {
-    {},   // TableHeaders
-    8500, // knockFreq
-    3000, // knockRatio
-    500,  // tpsMinV
-    4500, // tpsMaxV
-    3,    // fuelMinTh
-    3,    // fuelMaxChange
-    70,   // AfrMinVal*10
-    220,  // AfrMaxVal*10
-    0,    // AfrOffset
-    0,    // functions
-    0,    // sensorsInput
-    0,    // afrInput
-    0.0,    // rpmMult
-    0.0     // spdMult
-};
+settings_t settings = {};
 
 version_t versions[2] = {{0, 0, 0, 0},
-                         {VERSION_PROTOCOL, VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH}};
+                         {VERSION_API, VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH}};
 
 #else
-version_t versions[2] = {{VERSION_PROTOCOL, VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH},
+version_t versions[2] = {{VERSION_API, VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH},
                          {0, 0, 0, 0}};
 #endif
 

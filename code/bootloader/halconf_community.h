@@ -70,7 +70,7 @@
  * @brief   Enables the EEPROM subsystem.
  */
 #if !defined(HAL_USE_EEPROM) || defined(__DOXYGEN__)
-#define HAL_USE_EEPROM            FALSE
+#define HAL_USE_EEPROM            TRUE
 #endif
 
 /**

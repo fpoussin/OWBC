@@ -72,9 +72,9 @@
 #define STM32_ADC_DUAL_MODE                 FALSE
 #define STM32_ADC_COMPACT_SAMPLES           FALSE
 #define STM32_ADC_USE_ADC1                  TRUE
-#define STM32_ADC_USE_ADC2                  TRUE
-#define STM32_ADC_USE_ADC3                  TRUE
-#define STM32_ADC_USE_ADC4                  TRUE
+#define STM32_ADC_USE_ADC2                  FALSE
+#define STM32_ADC_USE_ADC3                  FALSE
+#define STM32_ADC_USE_ADC4                  FALSE
 #define STM32_ADC_ADC1_DMA_STREAM           STM32_DMA_STREAM_ID(1, 1)
 #define STM32_ADC_ADC2_DMA_STREAM           STM32_DMA_STREAM_ID(2, 1)
 #define STM32_ADC_ADC3_DMA_STREAM           STM32_DMA_STREAM_ID(2, 5)
@@ -96,7 +96,7 @@
 /*
  * CAN driver system settings.
  */
-#define STM32_CAN_USE_CAN1                  FALSE
+#define STM32_CAN_USE_CAN1                  TRUE
 #define STM32_CAN_CAN1_IRQ_PRIORITY         11
 
 /*
@@ -181,7 +181,7 @@
 #define STM32_PWM_USE_TIM1                  FALSE
 #define STM32_PWM_USE_TIM2                  FALSE
 #define STM32_PWM_USE_TIM3                  FALSE
-#define STM32_PWM_USE_TIM4                  FALSE
+#define STM32_PWM_USE_TIM4                  TRUE
 #define STM32_PWM_USE_TIM8                  FALSE
 #define STM32_PWM_TIM1_IRQ_PRIORITY         7
 #define STM32_PWM_TIM2_IRQ_PRIORITY         7
@@ -192,7 +192,7 @@
 /*
  * SERIAL driver system settings.
  */
-#define STM32_SERIAL_USE_USART1             FALSE
+#define STM32_SERIAL_USE_USART1             TRUE
 #define STM32_SERIAL_USE_USART2             FALSE
 #define STM32_SERIAL_USE_USART3             FALSE
 #define STM32_SERIAL_USE_UART4              FALSE
@@ -208,7 +208,7 @@
  */
 #define STM32_SPI_USE_SPI1                  FALSE
 #define STM32_SPI_USE_SPI2                  FALSE
-#define STM32_SPI_USE_SPI3                  FALSE
+#define STM32_SPI_USE_SPI3                  TRUE
 #define STM32_SPI_SPI1_DMA_PRIORITY         1
 #define STM32_SPI_SPI2_DMA_PRIORITY         1
 #define STM32_SPI_SPI3_DMA_PRIORITY         1
@@ -248,7 +248,7 @@
 /*
  * WDG driver system settings.
  */
-#define STM32_WDG_USE_IWDG                  FALSE
+#define STM32_WDG_USE_IWDG                  TRUE
 
 #include "mcuconf_community.h"
 
