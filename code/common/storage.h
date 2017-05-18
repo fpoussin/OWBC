@@ -23,18 +23,20 @@
 extern const SPIConfig EEPROM_SPIDCONFIG;
 
 typedef struct {
-  uint16_t functions;
-  uint16_t canAddr;
-  uint8_t outputMode;
-  uint8_t refreshRate;
-} settings_t;
-
-typedef struct {
     uint8_t api;
     uint8_t major;
     uint8_t minor;
     uint8_t patch;
 } version_t;
+
+typedef struct {
+  uint32_t key;
+  version_t version;
+  uint16_t functions;
+  uint16_t canAddr;
+  uint8_t outputMode;
+  uint8_t refreshRate;
+} settings_t;
 
 /* Public functions */
 void eeInit(void);

@@ -1,10 +1,6 @@
 #include "storage.h"
 #include <string.h>
 
-#ifdef MODE_APP
-#include "tables.h"
-#endif
-
 typedef uint32_t crc_t;
 
 const SPIConfig EEPROM_SPIDCONFIG = {
@@ -48,8 +44,7 @@ static SPIEepromFileStream settingsFile, tablesFile;
 static EepromFileStream *settingsFS, *tablesFS;
 
 static const uint32_t magic_key = 0xABEF1289;
-tables_t tables_buf = {0xABEF1289, 0, {}, {}};
-settings_t settings_buf = {0};
+settings_t settings_buf = {0xABEF1289, {}};
 static uint32_t counters[EEPROM_TABLES_SIZE / EEPROM_TABLES_PAGE_SIZE];
 
 #define openSettingsFS SPIEepromFileOpen(&settingsFile, &eeSettingsCfg, EepromFindDevice(EEPROM_DEV_25XX)
