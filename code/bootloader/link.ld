@@ -23,19 +23,21 @@
  */
 MEMORY
 {
-    flash  : org = 0x08000000, len = 40k
-    uflash : org = 0x0800A000, len = 216k
-    ram0   : org = 0x20000000, len = 40k
-    ram1   : org = 0x00000000, len = 0
-    ram2   : org = 0x00000000, len = 0
-    ram3   : org = 0x00000000, len = 0
-    ram4   : org = 0x10000000, len = 8k
-    ram5   : org = 0x00000000, len = 0
-    ram6   : org = 0x00000000, len = 0
-    ram7   : org = 0x00000000, len = 0
+    flash    : org = 0x08000000, len = 40k
+    uflash   : org = 0x0800A000, len = 215k
+    settings : org = 0x08009C00, len = 1k
+    ram0     : org = 0x20000000, len = 40k
+    ram1     : org = 0x00000000, len = 0
+    ram2     : org = 0x00000000, len = 0
+    ram3     : org = 0x00000000, len = 0
+    ram4     : org = 0x10000000, len = 8k
+    ram5     : org = 0x00000000, len = 0
+    ram6     : org = 0x00000000, len = 0
+    ram7     : org = 0x00000000, len = 0
 }
 
 __user_flash_address__ = ORIGIN(uflash);
 __user_flash_length__   = LENGTH(uflash);
+__user_settings_address__ = ORIGIN(settings);
 
 INCLUDE ../common/link.ld

@@ -5,22 +5,23 @@
 #include "ch.h"
 #include "common.h"
 
-// EEPROM is M95640 (ST)
-#define EEPROM_SIZE 8192 // 64Kb, 8KB
-#define EEPROM_PAGE_SIZE 32
-#define EEPROM_WRITE_TIME_MS 7 // 5ms byte/page write in datasheet
-#define EEPROM_SPID SPID3
-#define EEPROM_SPIDCONFIG spi3cfg
-
-#define EEPROM_SETTINGS_START 0
-#define EEPROM_SETTINGS_END 999
-#define EEPROM_VERSIONS_START 1000
-#define EEPROM_VERSIONS_END 1023
+#define SETTINGS_START 0
+#define SETTINGS_END 999
+#define SETTINGS_LEN (SETTINGS_END-SETTINGS_START)
+#define VERSIONS_START 991
+#define VERSIONS_END 1023
+#define VERSIONS_LEN (VERSIONS_END-VERSIONS_START)
 
 #define VERSION_IDX_BL  0
 #define VERSION_IDX_APP 1
 
-extern const SPIConfig EEPROM_SPIDCONFIG;
+extern uint32_t __user_settings_address__;
+#define SETTINGS_ADDR (__user_settings_address__ + SETTINGS_START)
+#define SETTINGS_PTR (uint32_t*)(SETTINGS_ADDR)
+#define VERSION_ADDR (__user_settings_address__ + VERSIONS_START)
+#define VERSION_PTR (uint32_t*)(VERSION_ADDR)
+
+typedef uint32_t crc_t;
 
 typedef struct {
     uint8_t api;
@@ -29,25 +30,27 @@ typedef struct {
     uint8_t patch;
 } version_t;
 
+/* 28 bytes data + 4 bytes crc */
 typedef struct {
   uint32_t key;
+  uint16_t cnt;
   version_t version;
   uint16_t functions;
   uint16_t canAddr;
   uint8_t outputMode;
   uint8_t refreshRate;
+  uint8_t reserved[12];
+  crc_t crc;
 } settings_t;
 
 /* Public functions */
-void eeInit(void);
-
-uint8_t readVersionFromEE(uint8_t idx, version_t* dst);
-uint8_t writeVersionToEE(uint8_t idx, const version_t* src);
+uint8_t readVersionFromFlash(uint8_t idx, version_t* dst);
+uint8_t writeVersionToFlash(uint8_t idx, const version_t* src);
 
 extern version_t versions[2];
 extern settings_t settings;
 
-uint8_t readSettingsFromEE(void);
-uint8_t writeSettingsToEE(void);
+uint8_t readSettingsFromFlash(void);
+uint8_t writeSettingsToFlash(void);
 
 #endif
