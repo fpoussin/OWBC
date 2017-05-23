@@ -5,3 +5,7 @@
 	path = code/ChibiOS
 	url = https://github.com/ChibiOS/ChibiOS.git
 	branch = stable_16.1.x
+[submodule "code/uGFX"]
+	path = code/uGFX
+	url = https://git.ugfx.io/uGFX/uGFX.git
+        branch = ugfx_release_2.7
