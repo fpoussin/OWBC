@@ -3,7 +3,7 @@
 #include <string.h>
 
 static const uint32_t magic_key = 0xABEF1289;
-settings_t settings_buf;
+static settings_t settings_buf;
 
 // Default settings
 settings_t settings = {};
@@ -28,7 +28,7 @@ static const CRCConfig crc32_config = {
 
 CCM_FUNC static crc_t getCrc(const CRCConfig *config, uint8_t *data, uint16_t len)
 {
-  uint32_t crc;
+  crc_t crc;
 
   crcAcquireUnit(&CRCD1);             /* Acquire ownership of the bus.    */
   crcStart(&CRCD1, config);           /* Activate CRC driver              */
@@ -67,7 +67,7 @@ CCM_FUNC static uint32_t findNextPageAddr(void)
     uint32_t addr = findCurrentPageAddr();
 
     /* Check if at last page */
-    if(addr >= SETTINGS_ADDR + SETTINGS_LEN)
+    if(addr >= SETTINGS_ADDR + SETTINGS_LEN - sizeof(settings_t))
     {
         addr = SETTINGS_ADDR;
     }
@@ -88,18 +88,27 @@ CCM_FUNC static uint32_t findPrevPageAddr(void)
     {
         addr = SETTINGS_ADDR + SETTINGS_LEN;
     }
-    else
-    {
-        addr -= sizeof(settings_t);
-    }
+    addr -= sizeof(settings_t);
 
     return addr;
 }
 
+CCM_FUNC static uint8_t readFlash(int32_t addr, uint8_t *buffer, crc_t *crc, uint32_t len)
+{
+    // Check min length
+    if (len < 8)
+        return 1;
+
+    *crc = getCrc(&crc32_config, (uint8_t *)addr, len - 4); // Minus crc itself
+    memcpy(buffer, (uint8_t *)addr, len);
+
+    return 0;
+}
+
 CCM_FUNC static uint8_t writeFlash(int32_t addr, uint8_t *buffer, crc_t *crc, uint32_t len)
 {
-    // Check min/max length
-    if (len > sizeof(settings_t) || len < 8)
+    // Check min length
+    if (len < 8)
         return 1;
 
     uint8_t i;
@@ -123,21 +132,9 @@ CCM_FUNC static uint8_t writeFlash(int32_t addr, uint8_t *buffer, crc_t *crc, ui
     return 0;
 }
 
-CCM_FUNC uint8_t readFlash(int32_t addr, uint8_t *buffer, crc_t *crc, uint32_t len)
-{
-    // Check min/max length
-    if (len > sizeof(settings_t) || len < 8)
-        return 1;
-
-    *crc = getCrc(&crc32_config, (uint8_t *)addr, len - 4); // Minus crc itself
-    memcpy(buffer, (uint8_t *)addr, len);
-
-    return 0;
-}
-
 CCM_FUNC uint8_t readSettingsFromFlash(void)
 {
-    crc_t crc1 = 0;
+    crc_t crc1;
     size_t len = sizeof(settings_t);
 
     if (readFlash(findCurrentPageAddr(), (uint8_t*)&settings_buf, &crc1, len) != 0)
@@ -162,7 +159,7 @@ CCM_FUNC uint8_t readSettingsFromFlash(void)
 
 CCM_FUNC uint8_t writeSettingsToFlash(void)
 {
-    crc_t crc1 = 0, crc2 = 0;
+    crc_t crc1, crc2;
     uint8_t res1, res2;
     size_t len =  sizeof(settings_buf);
     memcpy(&settings_buf, &settings, sizeof(settings_buf));
