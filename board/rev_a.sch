@@ -17651,15 +17651,20 @@ http://www.zetex.com&lt;p&gt;
 <part name="OPA1" library="linear" deviceset="MCP602" device="ST" value="MCP6002"/>
 <part name="R10" library="resistor" deviceset="R-EU_" device="R0603" value="22K 1%"/>
 <part name="R13" library="resistor" deviceset="R-EU_" device="R0603" value="100K 1%"/>
-<part name="R14" library="resistor" deviceset="R-EU_" device="R0603" value="61.9R 1%"/>
+<part name="R14" library="resistor" deviceset="R-EU_" device="R0603" value="62R 1%"/>
 <part name="R15" library="resistor" deviceset="R-EU_" device="R0603" value="10K 1%"/>
 <part name="C7" library="resistor" deviceset="C-EU" device="C0603" value="100nF"/>
-<part name="R16" library="resistor" deviceset="R-EU_" device="R0603" value="150K 1%"/>
+<part name="R16" library="resistor" deviceset="R-EU_" device="R0603" value="100K 1%"/>
 <part name="D1" library="zetex" deviceset="D_ACAC" device="SOT323"/>
 <part name="D2" library="zetex" deviceset="D_ACAC" device="SOT323"/>
 <part name="D3" library="zetex" deviceset="D_ACAC" device="SOT323"/>
 <part name="D4" library="zetex" deviceset="D_ACAC" device="SOT323"/>
 <part name="D5" library="zetex" deviceset="D_ACAC" device="SOT323"/>
+<part name="R17" library="resistor" deviceset="R-EU_" device="R0603" value="66K 1%"/>
+<part name="R18" library="resistor" deviceset="R-EU_" device="R0603" value="22K 1%"/>
+<part name="R19" library="resistor" deviceset="R-EU_" device="R0603" value="22K 1%"/>
+<part name="R20" library="resistor" deviceset="R-EU_" device="R0603" value="66K 1%"/>
+<part name="R21" library="resistor" deviceset="R-EU_" device="R0603" value="100R"/>
 </parts>
 <sheets>
 <sheet>
@@ -17669,25 +17674,26 @@ http://www.zetex.com&lt;p&gt;
 <wire x1="218.44" y1="252.73" x2="208.28" y2="257.81" width="0.2032" layer="97"/>
 <text x="209.804" y="252.222" size="1.27" layer="98">OPA3</text>
 <text x="200.66" y="269.24" size="1.27" layer="98">Pump cell current</text>
-<text x="361.95" y="134.62" size="1.27" layer="91">VBAT monitoring</text>
-<text x="292.1" y="224.79" size="1.27" layer="91">VREF Buffer</text>
+<text x="370.84" y="134.62" size="1.27" layer="91" align="bottom-center">VBAT monitoring
+(Engine ON/OFF detection, heater current calculation)</text>
+<text x="292.1" y="224.79" size="1.27" layer="91">VGND Buffer</text>
 <text x="288.29" y="264.16" size="1.27" layer="91">Pump Drive Buffer</text>
 <wire x1="209.55" y1="223.52" x2="209.55" y2="213.36" width="0.2032" layer="97"/>
 <wire x1="209.55" y1="213.36" x2="219.71" y2="218.44" width="0.2032" layer="97"/>
 <wire x1="219.71" y1="218.44" x2="209.55" y2="223.52" width="0.2032" layer="97"/>
 <text x="211.074" y="217.932" size="1.27" layer="98">OPA4</text>
-<text x="204.47" y="226.06" size="1.27" layer="98">Nerst resistance PGA</text>
+<text x="203.2" y="234.95" size="1.27" layer="98">Nerst resistance</text>
 <text x="210.82" y="220.98" size="1.27" layer="91" rot="R90">+</text>
 <text x="209.55" y="255.27" size="1.27" layer="91" rot="R90">+</text>
 <text x="210.82" y="215.9" size="1.27" layer="91" rot="R180">-</text>
 <text x="209.55" y="250.19" size="1.27" layer="91" rot="R180">-</text>
-<text x="355.6" y="204.47" size="1.27" layer="91">Output PWM DACs - 16Mhz</text>
+<text x="355.6" y="201.93" size="1.27" layer="91">Output PWM DACs - 16Mhz</text>
 <text x="229.87" y="255.27" size="1.27" layer="91">ADC3_1</text>
 <text x="231.14" y="220.98" size="1.27" layer="91">ADC4_3</text>
-<text x="214.63" y="205.74" size="1.27" layer="91">Nerst pulse</text>
+<text x="359.41" y="227.33" size="1.27" layer="91">Nerst pulse</text>
 <text x="158.75" y="251.46" size="1.27" layer="91">Read current across R14
 Amplify by 5.5</text>
-<text x="274.32" y="204.47" size="1.27" layer="91">LSU 4.9 reference current</text>
+<text x="347.98" y="246.38" size="1.27" layer="91">LSU 4.9 reference current (33 uA)</text>
 </plain>
 <instances>
 <instance part="MCU" gate="G$1" x="241.3" y="152.4"/>
@@ -17775,14 +17781,19 @@ Amplify by 5.5</text>
 <instance part="R10" gate="G$1" x="200.66" y="257.81"/>
 <instance part="R13" gate="G$1" x="213.36" y="264.16"/>
 <instance part="R14" gate="G$1" x="190.5" y="252.73" rot="R90"/>
-<instance part="R15" gate="G$1" x="218.44" y="200.66" rot="R180"/>
-<instance part="C7" gate="G$1" x="233.68" y="200.66" rot="R90"/>
-<instance part="R16" gate="G$1" x="288.29" y="200.66" rot="R180"/>
+<instance part="R15" gate="G$1" x="363.22" y="222.25" rot="R180"/>
+<instance part="C7" gate="G$1" x="378.46" y="222.25" rot="R90"/>
+<instance part="R16" gate="G$1" x="361.95" y="242.57" rot="R180"/>
 <instance part="D1" gate="A" x="133.35" y="241.3" rot="R180"/>
 <instance part="D2" gate="A" x="139.7" y="226.06" rot="R180"/>
 <instance part="D3" gate="A" x="133.35" y="207.01" rot="R180"/>
 <instance part="D4" gate="A" x="139.7" y="191.77" rot="R180"/>
 <instance part="D5" gate="A" x="377.19" y="127" rot="R180"/>
+<instance part="R17" gate="G$1" x="214.63" y="207.01"/>
+<instance part="R18" gate="G$1" x="201.93" y="213.36"/>
+<instance part="R19" gate="G$1" x="201.93" y="223.52"/>
+<instance part="R20" gate="G$1" x="214.63" y="229.87"/>
+<instance part="R21" gate="G$1" x="312.42" y="252.73" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -17926,6 +17937,11 @@ Amplify by 5.5</text>
 <pinref part="GND14" gate="1" pin="GND"/>
 <pinref part="D1" gate="A" pin="A"/>
 <wire x1="135.89" y1="236.22" x2="135.89" y2="238.76" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="R20" gate="G$1" pin="2"/>
+<wire x1="219.71" y1="229.87" x2="222.25" y2="229.87" width="0.1524" layer="91"/>
+<label x="222.25" y="229.87" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="12V" class="0">
@@ -18086,12 +18102,18 @@ Amplify by 5.5</text>
 </segment>
 <segment>
 <pinref part="C7" gate="G$1" pin="2"/>
-<wire x1="238.76" y1="200.66" x2="243.84" y2="200.66" width="0.1524" layer="91"/>
-<label x="243.84" y="200.66" size="1.27" layer="95" xref="yes"/>
+<wire x1="383.54" y1="222.25" x2="388.62" y2="222.25" width="0.1524" layer="91"/>
+<label x="388.62" y="222.25" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="293.37" y1="200.66" x2="298.45" y2="200.66" width="0.1524" layer="91"/>
-<label x="298.45" y="200.66" size="1.27" layer="95" xref="yes"/>
+<wire x1="367.03" y1="242.57" x2="372.11" y2="242.57" width="0.1524" layer="91"/>
+<label x="372.11" y="242.57" size="1.27" layer="95" xref="yes"/>
+<pinref part="R16" gate="G$1" pin="1"/>
+</segment>
+<segment>
+<pinref part="R19" gate="G$1" pin="1"/>
+<wire x1="196.85" y1="223.52" x2="191.77" y2="223.52" width="0.1524" layer="91"/>
+<label x="191.77" y="223.52" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="HEATER_POS" class="0">
@@ -18101,7 +18123,7 @@ Amplify by 5.5</text>
 <label x="104.14" y="62.23" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="VS/IP_REF" class="0">
+<net name="VGND" class="0">
 <segment>
 <pinref part="J2" gate="G$1" pin="2"/>
 <wire x1="101.6" y1="57.15" x2="104.14" y2="57.15" width="0.1524" layer="91"/>
@@ -18122,6 +18144,11 @@ Amplify by 5.5</text>
 <wire x1="218.44" y1="264.16" x2="220.98" y2="264.16" width="0.1524" layer="91"/>
 <label x="220.98" y="264.16" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="R18" gate="G$1" pin="1"/>
+<wire x1="196.85" y1="213.36" x2="191.77" y2="213.36" width="0.1524" layer="91"/>
+<label x="191.77" y="213.36" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="IP" class="0">
 <segment>
@@ -18136,16 +18163,6 @@ Amplify by 5.5</text>
 <pinref part="R14" gate="G$1" pin="1"/>
 <wire x1="190.5" y1="247.65" x2="187.96" y2="247.65" width="0.1524" layer="91"/>
 <junction x="190.5" y="247.65"/>
-</segment>
-<segment>
-<wire x1="304.8" y1="252.73" x2="307.34" y2="252.73" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="250.19" x2="289.56" y2="238.76" width="0.1524" layer="91"/>
-<wire x1="289.56" y1="238.76" x2="304.8" y2="238.76" width="0.1524" layer="91"/>
-<wire x1="304.8" y1="238.76" x2="304.8" y2="252.73" width="0.1524" layer="91"/>
-<label x="307.34" y="252.73" size="1.27" layer="95" xref="yes"/>
-<pinref part="OPA1" gate="A" pin="-IN"/>
-<pinref part="OPA1" gate="A" pin="OUT"/>
-<junction x="304.8" y="252.73"/>
 </segment>
 </net>
 <net name="OUT1_PROT" class="0">
@@ -18190,7 +18207,7 @@ Amplify by 5.5</text>
 <junction x="374.65" y="157.48"/>
 </segment>
 </net>
-<net name="CAN_RS" class="0">
+<net name="CAN_SLEEP" class="0">
 <segment>
 <pinref part="MCU" gate="G$1" pin="PC14-OSC32_IN"/>
 <wire x1="185.42" y1="180.34" x2="180.34" y2="180.34" width="0.1524" layer="91"/>
@@ -18258,16 +18275,15 @@ Amplify by 5.5</text>
 <wire x1="297.18" y1="132.08" x2="302.26" y2="132.08" width="0.1524" layer="91"/>
 <label x="302.26" y="132.08" size="1.27" layer="95" xref="yes"/>
 </segment>
-</net>
-<net name="VS/OPA4_IN+" class="0">
 <segment>
-<pinref part="MCU" gate="G$1" pin="PB11-I2C2SDA/USART3RX-TIM2CH4"/>
-<wire x1="297.18" y1="129.54" x2="302.26" y2="129.54" width="0.1524" layer="91"/>
-<label x="302.26" y="129.54" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<wire x1="207.01" y1="220.98" x2="209.55" y2="220.98" width="0.1524" layer="91"/>
-<label x="207.01" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="207.01" y1="215.9" x2="209.55" y2="215.9" width="0.1524" layer="91"/>
+<pinref part="R17" gate="G$1" pin="1"/>
+<wire x1="209.55" y1="207.01" x2="207.01" y2="207.01" width="0.1524" layer="91"/>
+<wire x1="207.01" y1="207.01" x2="207.01" y2="213.36" width="0.1524" layer="91"/>
+<label x="207.01" y="207.01" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="R18" gate="G$1" pin="2"/>
+<wire x1="207.01" y1="213.36" x2="207.01" y2="215.9" width="0.1524" layer="91"/>
+<junction x="207.01" y="213.36"/>
 </segment>
 </net>
 <net name="OPA4_OUT" class="0">
@@ -18280,11 +18296,10 @@ Amplify by 5.5</text>
 <label x="229.87" y="218.44" size="1.27" layer="95" xref="yes"/>
 <wire x1="219.71" y1="218.44" x2="222.25" y2="218.44" width="0.1524" layer="91"/>
 <wire x1="222.25" y1="218.44" x2="229.87" y2="218.44" width="0.1524" layer="91"/>
-<wire x1="222.25" y1="218.44" x2="222.25" y2="212.09" width="0.1524" layer="91"/>
+<wire x1="222.25" y1="218.44" x2="222.25" y2="207.01" width="0.1524" layer="91"/>
 <junction x="222.25" y="218.44"/>
-<wire x1="222.25" y1="212.09" x2="207.01" y2="212.09" width="0.1524" layer="91"/>
-<wire x1="207.01" y1="212.09" x2="207.01" y2="215.9" width="0.1524" layer="91"/>
-<wire x1="207.01" y1="215.9" x2="209.55" y2="215.9" width="0.1524" layer="91"/>
+<pinref part="R17" gate="G$1" pin="2"/>
+<wire x1="219.71" y1="207.01" x2="222.25" y2="207.01" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="NRST" class="0">
@@ -18667,8 +18682,9 @@ Amplify by 5.5</text>
 <pinref part="OPA1" gate="P" pin="V+"/>
 </segment>
 <segment>
-<wire x1="283.21" y1="200.66" x2="279.4" y2="200.66" width="0.1524" layer="91"/>
-<label x="279.4" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="356.87" y1="242.57" x2="353.06" y2="242.57" width="0.1524" layer="91"/>
+<label x="353.06" y="242.57" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="R16" gate="G$1" pin="2"/>
 </segment>
 </net>
 <net name="SWCLK" class="0">
@@ -18716,6 +18732,11 @@ Amplify by 5.5</text>
 <wire x1="101.6" y1="64.77" x2="104.14" y2="64.77" width="0.1524" layer="91"/>
 <label x="104.14" y="64.77" size="1.27" layer="95" xref="yes"/>
 </segment>
+<segment>
+<pinref part="R21" gate="G$1" pin="1"/>
+<wire x1="317.5" y1="252.73" x2="320.04" y2="252.73" width="0.1524" layer="91"/>
+<label x="320.04" y="252.73" size="1.27" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="TIM1_CH1" class="0">
 <segment>
@@ -18724,16 +18745,45 @@ Amplify by 5.5</text>
 <label x="180.34" y="137.16" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="208.28" y1="200.66" x2="213.36" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="353.06" y1="222.25" x2="358.14" y2="222.25" width="0.1524" layer="91"/>
 <pinref part="R15" gate="G$1" pin="2"/>
-<label x="208.28" y="200.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+<label x="353.06" y="222.25" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
 <pinref part="R15" gate="G$1" pin="1"/>
-<wire x1="223.52" y1="200.66" x2="231.14" y2="200.66" width="0.1524" layer="91"/>
+<wire x1="368.3" y1="222.25" x2="375.92" y2="222.25" width="0.1524" layer="91"/>
 <pinref part="C7" gate="G$1" pin="1"/>
+</segment>
+</net>
+<net name="OPA4_IN+" class="0">
+<segment>
+<pinref part="MCU" gate="G$1" pin="PB11-I2C2SDA/USART3RX-TIM2CH4"/>
+<wire x1="297.18" y1="129.54" x2="302.26" y2="129.54" width="0.1524" layer="91"/>
+<label x="302.26" y="129.54" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="207.01" y1="223.52" x2="207.01" y2="229.87" width="0.1524" layer="91"/>
+<label x="207.01" y="229.87" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="R19" gate="G$1" pin="2"/>
+<junction x="207.01" y="223.52"/>
+<pinref part="R20" gate="G$1" pin="1"/>
+<wire x1="209.55" y1="229.87" x2="207.01" y2="229.87" width="0.1524" layer="91"/>
+<wire x1="207.01" y1="223.52" x2="207.01" y2="220.98" width="0.1524" layer="91"/>
+<wire x1="207.01" y1="220.98" x2="209.55" y2="220.98" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$15" class="0">
+<segment>
+<wire x1="304.8" y1="252.73" x2="307.34" y2="252.73" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="250.19" x2="289.56" y2="238.76" width="0.1524" layer="91"/>
+<wire x1="289.56" y1="238.76" x2="304.8" y2="238.76" width="0.1524" layer="91"/>
+<wire x1="304.8" y1="238.76" x2="304.8" y2="252.73" width="0.1524" layer="91"/>
+<pinref part="OPA1" gate="A" pin="-IN"/>
+<pinref part="OPA1" gate="A" pin="OUT"/>
+<junction x="304.8" y="252.73"/>
+<pinref part="R21" gate="G$1" pin="2"/>
 </segment>
 </net>
 </nets>

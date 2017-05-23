@@ -18,8 +18,8 @@
 <layer number="22" name="bPlace" color="14" fill="1" visible="yes" active="yes"/>
 <layer number="23" name="tOrigins" color="15" fill="1" visible="yes" active="yes"/>
 <layer number="24" name="bOrigins" color="15" fill="1" visible="yes" active="yes"/>
-<layer number="25" name="tNames" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="25" name="tNames" color="7" fill="1" visible="no" active="yes"/>
+<layer number="26" name="bNames" color="7" fill="1" visible="no" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="no" active="yes"/>
 <layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
@@ -3189,10 +3189,10 @@ design rules under a new name.</description>
 <element name="OPA1" library="linear" package="TSSOP8" value="MCP6002" x="21.5" y="8.5"/>
 <element name="R10" library="resistor" package="R0603" value="22K 1%" x="-5.5" y="-57"/>
 <element name="R13" library="resistor" package="R0603" value="100K 1%" x="-5.5" y="-62"/>
-<element name="R14" library="resistor" package="R0603" value="61.9R 1%" x="-5.5" y="-67"/>
+<element name="R14" library="resistor" package="R0603" value="62R 1%" x="-5.5" y="-67"/>
 <element name="R15" library="resistor" package="R0603" value="10K 1%" x="-5.5" y="-72"/>
 <element name="C7" library="resistor" package="C0603" value="100nF" x="-5.5" y="-77"/>
-<element name="R16" library="resistor" package="R0603" value="150K 1%" x="-5.5" y="-82"/>
+<element name="R16" library="resistor" package="R0603" value="100K 1%" x="-5.5" y="-82"/>
 <element name="D1" library="zetex" package="SOT323" value="" x="6.5" y="22.75" rot="R180">
 <attribute name="OC_FARNELL" value="unknown" x="6.5" y="22.75" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
 <attribute name="OC_NEWARK" value="unknown" x="6.5" y="22.75" size="1.778" layer="27" font="vector" ratio="15" rot="R180" display="off"/>
@@ -3223,6 +3223,11 @@ design rules under a new name.</description>
 <attribute name="MF" value="" x="13.5" y="2" size="1.778" layer="27" font="vector" ratio="15" rot="R90" display="off"/>
 <attribute name="MPN" value="" x="13.5" y="2" size="1.778" layer="27" font="vector" ratio="15" rot="R90" display="off"/>
 </element>
+<element name="R17" library="resistor" package="R0603" value="66K 1%" x="-5.5" y="-87"/>
+<element name="R18" library="resistor" package="R0603" value="22K 1%" x="-5.5" y="-92"/>
+<element name="R19" library="resistor" package="R0603" value="22K 1%" x="-5.5" y="-97"/>
+<element name="R20" library="resistor" package="R0603" value="66K 1%" x="-5.5" y="-102"/>
+<element name="R21" library="resistor" package="R0603" value="100R" x="-5.5" y="-107"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -3271,6 +3276,8 @@ design rules under a new name.</description>
 <contactref element="D2" pad="3"/>
 <contactref element="D1" pad="3"/>
 <contactref element="D5" pad="3"/>
+<contactref element="R20" pad="2"/>
+<wire x1="-4.65" y1="-52" x2="-4.65" y2="-102" width="0" layer="19" extent="1-1"/>
 <wire x1="-4.65" y1="-42" x2="-4.65" y2="-52" width="0" layer="19" extent="1-1"/>
 <wire x1="2.35" y1="-22" x2="-4.65" y2="-42" width="0" layer="19" extent="1-1"/>
 <wire x1="1.095" y1="1.206" x2="2.35" y2="-22" width="0" layer="19" extent="1-16"/>
@@ -3349,16 +3356,22 @@ design rules under a new name.</description>
 <signal name="VS">
 <contactref element="J2" pad="6"/>
 <contactref element="C7" pad="2"/>
+<contactref element="R16" pad="1"/>
+<contactref element="R19" pad="1"/>
+<wire x1="-6.35" y1="-82" x2="-6.35" y2="-97" width="0" layer="19" extent="1-1"/>
+<wire x1="-4.65" y1="-77" x2="-6.35" y2="-82" width="0" layer="19" extent="1-1"/>
 <wire x1="46" y1="18.7" x2="-4.65" y2="-77" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="HEATER_POS">
 <contactref element="J2" pad="4"/>
 </signal>
-<signal name="VS/IP_REF">
+<signal name="VGND">
 <contactref element="J2" pad="2"/>
 <contactref element="OPA1" pad="6"/>
 <contactref element="OPA1" pad="7"/>
 <contactref element="R13" pad="2"/>
+<contactref element="R18" pad="1"/>
+<wire x1="-4.65" y1="-62" x2="-6.35" y2="-92" width="0" layer="19" extent="1-1"/>
 <wire x1="21.175" y1="11.425" x2="-4.65" y2="-62" width="0" layer="19" extent="1-1"/>
 <wire x1="21.825" y1="11.425" x2="21.175" y2="11.425" width="0" layer="19" extent="1-1"/>
 <wire x1="46" y1="8.54" x2="21.825" y2="11.425" width="0" layer="19" extent="1-1"/>
@@ -3367,11 +3380,7 @@ design rules under a new name.</description>
 <contactref element="J2" pad="1"/>
 <contactref element="R7" pad="1"/>
 <contactref element="R14" pad="1"/>
-<contactref element="OPA1" pad="2"/>
-<contactref element="OPA1" pad="1"/>
-<wire x1="20.525" y1="5.575" x2="-6.35" y2="-67" width="0" layer="19" extent="1-1"/>
-<wire x1="21.175" y1="5.575" x2="20.525" y2="5.575" width="0" layer="19" extent="1-1"/>
-<wire x1="29.15" y1="2" x2="21.175" y2="5.575" width="0" layer="19" extent="1-1"/>
+<wire x1="29.15" y1="2" x2="-6.35" y2="-67" width="0" layer="19" extent="1-1"/>
 <wire x1="46" y1="6" x2="29.15" y2="2" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="OUT1_PROT">
@@ -3396,7 +3405,7 @@ design rules under a new name.</description>
 <wire x1="10.075" y1="12.675" x2="6.5" y2="16.15" width="0" layer="19" extent="1-1"/>
 <wire x1="10.15" y1="10" x2="10.075" y2="12.675" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="CAN_RS">
+<signal name="CAN_SLEEP">
 <contactref element="MCU" pad="3"/>
 <contactref element="R3" pad="2"/>
 <wire x1="3.35" y1="1" x2="34.5" y2="13.25" width="0" layer="19" extent="1-1"/>
@@ -3427,12 +3436,15 @@ design rules under a new name.</description>
 </signal>
 <signal name="OPA4_IN-">
 <contactref element="MCU" pad="21"/>
-</signal>
-<signal name="VS/OPA4_IN+">
-<contactref element="MCU" pad="22"/>
+<contactref element="R17" pad="1"/>
+<contactref element="R18" pad="2"/>
+<wire x1="-6.35" y1="-87" x2="-4.65" y2="-92" width="0" layer="19" extent="1-1"/>
+<wire x1="28.5" y1="7.75" x2="-6.35" y2="-87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="OPA4_OUT">
 <contactref element="MCU" pad="25"/>
+<contactref element="R17" pad="2"/>
+<wire x1="30" y1="4.75" x2="-4.65" y2="-87" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="NRST">
 <contactref element="MCU" pad="7"/>
@@ -3614,10 +3626,12 @@ design rules under a new name.</description>
 <contactref element="MCU" pad="9"/>
 <contactref element="OPA1" pad="8"/>
 <contactref element="D5" pad="2"/>
-<wire x1="23.5" y1="14.65" x2="31.5" y2="13.25" width="0" layer="19" extent="1-1"/>
-<wire x1="21.95" y1="14.1999" x2="23.5" y2="14.65" width="0" layer="19" extent="1-1"/>
-<wire x1="20.525" y1="11.425" x2="21.95" y2="14.1999" width="0" layer="19" extent="1-1"/>
-<wire x1="14.4" y1="1.35" x2="20.525" y2="11.425" width="0" layer="19" extent="1-1"/>
+<contactref element="R16" pad="2"/>
+<wire x1="14.4" y1="1.35" x2="-4.65" y2="-82" width="0" layer="19" extent="1-1"/>
+<wire x1="20.525" y1="11.425" x2="14.4" y2="1.35" width="0" layer="19" extent="1-1"/>
+<wire x1="21.95" y1="14.1999" x2="20.525" y2="11.425" width="0" layer="19" extent="1-1"/>
+<wire x1="23.5" y1="14.65" x2="21.95" y2="14.1999" width="0" layer="19" extent="1-1"/>
+<wire x1="31.5" y1="13.25" x2="23.5" y2="14.65" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SWCLK">
 <contactref element="X1" pad="1"/>
@@ -3642,6 +3656,8 @@ design rules under a new name.</description>
 <contactref element="R10" pad="1"/>
 <contactref element="J2" pad="5"/>
 <contactref element="R14" pad="2"/>
+<contactref element="R21" pad="1"/>
+<wire x1="-4.65" y1="-67" x2="-6.35" y2="-107" width="0" layer="19" extent="1-1"/>
 <wire x1="-6.35" y1="-57" x2="-4.65" y2="-67" width="0" layer="19" extent="1-1"/>
 <wire x1="46" y1="16.16" x2="-6.35" y2="-57" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -3654,6 +3670,20 @@ design rules under a new name.</description>
 <contactref element="R15" pad="1"/>
 <contactref element="C7" pad="1"/>
 <wire x1="-6.35" y1="-72" x2="-6.35" y2="-77" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="OPA4_IN+">
+<contactref element="MCU" pad="22"/>
+<contactref element="R19" pad="2"/>
+<contactref element="R20" pad="1"/>
+<wire x1="-4.65" y1="-97" x2="-6.35" y2="-102" width="0" layer="19" extent="1-1"/>
+<wire x1="28.5" y1="7.25" x2="-4.65" y2="-97" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$15">
+<contactref element="OPA1" pad="2"/>
+<contactref element="OPA1" pad="1"/>
+<contactref element="R21" pad="2"/>
+<wire x1="20.525" y1="5.575" x2="-4.65" y2="-107" width="0" layer="19" extent="1-1"/>
+<wire x1="21.175" y1="5.575" x2="20.525" y2="5.575" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>
